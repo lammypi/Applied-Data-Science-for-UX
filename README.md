@@ -3,6 +3,8 @@ A hands-on guide to applying data science techniques in UX research. This reposi
 
 ## Current Structure
 
+### Module 00: Setting Up Your Workspace
+
 ### Module 01: UX Research + Survey Analysis
 
 
