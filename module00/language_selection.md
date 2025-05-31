@@ -32,3 +32,6 @@ Obviously this is not an exhaustive list, but hopefully it is enough to help you
 - Python frameworks and ecosystems for machine learning seem better supported ([scikit-learn](https://scikit-learn.org/stable/), [TensorFlow](https://www.tensorflow.org/), [PyTorch](https://pytorch.org/)).
 
 I use both Python and R, but I use Python as much as possible because it allows me to do more than just analytics work.
+
+
+
