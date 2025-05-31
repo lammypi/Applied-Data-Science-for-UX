@@ -3,7 +3,7 @@ A hands-on guide to applying data science techniques in UX research. This reposi
 
 ## Current Structure
 
-### Setting Up Your Workspace ❇️
+### [Setting Up Your Workspace ❇️](/module00)
 If you're new to using Python or R on your machine, this section can help you identify the necessary downloads to get started.
 
 ### Data Preparation 🔢
