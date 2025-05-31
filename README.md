@@ -27,7 +27,7 @@ Natural Language Processing (NLP) refers to a variety of methods for analyzing t
 ### Finding Connections 🕸️
 Finding connections within complex data might seem a bit daunting, but with Network Analytics it becomes a lot simpler. This module presents the basics of creating network graphs and metrics for analyzing them.
 
-### Appendix: Types of Analytics
+### Appendix: Language of Data
 
 ### Appendix: Review of Log and Exponent Rules
 
