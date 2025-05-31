@@ -10,7 +10,7 @@ If you're new to using Python or R on your machine, this section can help you id
 Most of the data that's useful for analytics in service of UX comes in varying degrees of messiness. That's OK, though, because you'll learn a bit about how to deal with messy data and draw out useful features for analysis.
 
 ### Do Some Basic Stats 🌟
-Sometimes all you need is a good ANOVA. Or Kruskal Wallis test. This module is a quick review of some basic statistics.
+Sometimes all you need is a good ANOVA. Or Mann Whitney U test. This module is a quick review of some basic statistics.
 
 ### Uncovering Relationships 📉
 A large component of UX research is understanding relationships: How people relate to technology, their environments, and to each other. All of this can be captured in data, and so this module will teach correlation and regression methods to help you describe and interpret relationships captured in data.
