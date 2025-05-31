@@ -6,4 +6,4 @@ If you're new to using Python or R on your machine, this section can help you id
 
 ## Content in This Module
 1. [Language Selection](/module00/language_selection.md)- considerations when choosing between Python and R for starting your learning journey.
-2. Getting Started with Python- overview of Python and some common IDEs for your work.
+2. [Getting Started with Python](/module00/getting_started_with_python.md)- overview of Python and some common IDEs for your work.
