@@ -1,6 +1,10 @@
 # Applied-Data-Science-for-UX
 A hands-on guide to applying data science techniques in UX research. This repository bridges the gap between qualitative insights and quantitative rigor with code notebooks, real-world examples, and beginner-friendly explanations.
 
+__Why Have I Created This Repository?__
+
+As of the time I'm creating this (April 2025), UX is undergoing a lot of shifting and uncertainty largely due to companies pushing AI regardless of whether they have a viable use case for it. In my industry, there's a greater need for UX research, and for that research to include legitimate quantitative methods. However, those methods (which seem to mainly be centered on frequentist statistics) are not going far enough. Product leaders want deeper insights into attitudes and behaviors, and how those manifest in the digital spaces companies create. UX can't provide that with parametric tests, gap analysis or the occasional semantic analysis. We need to become comfortable with the broader suite of analytics methods that can if we want to provide such insights. This repository is not me trying to democratize product analytics or diminish the skills of product analysts or product data scientists. Rather, it's my way of encouraging UX practitioners to consider acquiring additional training and moving into those roles so we can bring our perspective to the interpretation of user and product data. 
+
 ## Current Structure
 
 ### [Setting Up Your Workspace ❇️](/module00)
