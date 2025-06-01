@@ -5,7 +5,7 @@ Data science can be done in a variety of languages, but the examples in this rep
 
 ## Python vs. R   
 
-The selection of language for your data science journey is important as it may impact your perceptions of what is and is not possible. That's not to say that you can only do certain types of work in one language versus another--there is a lot of overlap in libraries between both languages, and you can even use Python in R via [reticulate](https://rstudio.github.io/reticulate/), or R in Python via [r2py](https://rpy2.github.io/). Rather, it's easier to do some things in Python than R and vice versa.
+The selection of language for your data science journey is important as it may impact your perceptions of what is and is not possible. That's not to say that you can only do certain types of work in one language versus another--there is a lot of overlap in libraries between both languages, and you can even use Python in R via [reticulate](https://rstudio.github.io/reticulate/), or R in Python via [rpy2](https://rpy2.github.io/). Rather, it's easier to do some things in Python than R and vice versa.
 
 Here is a very high-level comparison of the two languages to aid your decision:
 
