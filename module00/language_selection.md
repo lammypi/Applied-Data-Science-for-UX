@@ -23,7 +23,7 @@ Here is a very high-level comparison of the two languages to aid your decision:
 | Domains    | Virtually all domains within tech-backed industries | Academia, Healthcare, Finance |
 
 Obviously this is not an exhaustive list, but hopefully it is enough to help you choose between the two languages. From my own experience, it was easier for me to learn Python than R overall. To summarize my experience with both:
-- R starts out easy, but as you progress to more advanced types of analyses, the syntax sometimes became more difficult.
+- R starts out easy, but as you progress to more advanced types of analyses, the syntax sometimes becomes more difficult.
 - Visualization in R is much easier than in Python. This is due in part to the 'language' of creating visualizations and tables that you find in packages like [ggplot2](https://ggplot2.tidyverse.org/) and [gt](https://gt.rstudio.com/).
 - Dashboarding in R via [Shiny](https://shiny.posit.co/) can seem slow, but it is far more flexible in many ways than the popular [Streamlit](https://streamlit.io/) for Python.
   - Shiny for Python is kind of meh for me, as of writing this in May 2025.
