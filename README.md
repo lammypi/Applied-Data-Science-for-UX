@@ -29,6 +29,8 @@ Finding connections within complex data might seem a bit daunting, but with Netw
 
 ### [Appendix: Language of Data](/appendix00/language_of_data.md)
 
+### Appendix: Distributions You Should Know
+
 ### Appendix: Review of Log and Exponent Rules
 
 ### Appendix: Review of Derivatives and Differentiation Rules
