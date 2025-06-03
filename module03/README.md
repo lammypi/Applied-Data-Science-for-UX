@@ -6,7 +6,7 @@ If you're a UX person reading this, then you're likely very familiar with Pearso
 
 The list of topics in each section appears below. Please note that this is not an exhaustive list. What I'm presenting here are only the ones I have used. 
 
-| [Correlations](/correlation/README.md) | Regressions |
+| [Correlations](/correlations/README.md) | Regressions |
 |--------------|-------------|
 | Pearson's r | Linear regression |
 | Spearmans $\rho$ | Logistic regression |
