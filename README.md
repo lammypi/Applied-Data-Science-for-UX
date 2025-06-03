@@ -16,7 +16,7 @@ Most of the data that's useful for analytics in service of UX comes in varying d
 ### Do Some Basic Stats 🌟
 Sometimes all you need is a good ANOVA. Or Mann Whitney U test. This module is a quick review of some basic statistics.
 
-### Uncovering Relationships 📉
+### [Uncovering Relationships 📉](/module03)
 A large component of UX research is understanding relationships: How people relate to technology, their environments, and to each other. All of this can be captured in data, and so this module will teach correlation and regression methods to help you describe and interpret relationships captured in data.
 
 ### Classifying Your Data Points 🏷️
