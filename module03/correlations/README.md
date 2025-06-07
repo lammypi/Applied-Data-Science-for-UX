@@ -1,14 +1,14 @@
 # Uncovering Relationships: Correlations
 
 This section reviews the most common correlations you may encounter in the course of an analysis.
-- [Pearson's r](/module03/correlations/pearsons_r.ipynb)
-- [Spearman's $ρ$ (rho)]
-- [Kendall's $\tau$ (tau)]
-- [Point Biserial]
-- [Polyserial]
-- [Polychoric]
-- [Tetrachoric]   
-- [Distance]
+- Pearson's r: [Python](/module03/correlations/pearsons_r.ipynb) | R
+- Spearman's $ρ$ (rho)
+- Kendall's $\tau$ (tau)
+- Point Biserial
+- Polyserial
+- Polychoric
+- Tetrachoric   
+- Distance
 
 
 &#x1F386; __What is a correlation?__   
