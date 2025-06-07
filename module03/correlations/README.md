@@ -1,7 +1,7 @@
 # Uncovering Relationships: Correlations
 
 This section reviews the most common correlations you may encounter in the course of an analysis.
-- [Pearson's r](#pearson)
+- [Pearson's r](/module03/correlations/pearsons_r.ipynb)
 - [Spearman's $ρ$ (rho)](#spearman)
 - [Kendall's $\tau$ (tau)](#kendall)
 - [Point Biserial](#point-biserial)
