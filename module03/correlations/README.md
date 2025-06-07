@@ -3,7 +3,7 @@
 This section reviews the most common correlations you may encounter in the course of an analysis.
 - Pearson's r: [Python](/module03/correlations/pearsons_r.ipynb) | R
 - Spearman's $ρ$ (rho): [Python](/module03/correlations/spearmans_rho.ipynb) | R
-- Kendall's $\tau$ (tau); [Python](/module03/correlations/kendalls_tau.ipynb) | R
+- Kendall's $\tau$ (tau): [Python](/module03/correlations/kendalls_tau.ipynb) | R
 - Point Biserial
 - Polyserial
 - Polychoric
