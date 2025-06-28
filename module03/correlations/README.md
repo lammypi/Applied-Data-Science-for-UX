@@ -6,6 +6,7 @@ This section reviews the most common correlations you may encounter in the cours
 - Kendall's $\tau$ (tau): [Python](/module03/correlations/kendalls_tau.ipynb) | R
 - Point Biserial $r_{pb}$: [Python](/module03/correlations/point_biserial.ipynb) | R
 - Polyserial
+- Rank Biserial
 - Polychoric
 - Tetrachoric   
 - Distance
