@@ -4,7 +4,7 @@ This section reviews the most common correlations you may encounter in the cours
 - Pearson's r: [Python](/module03/correlations/pearsons_r.ipynb) | R
 - Spearman's $ρ$ (rho): [Python](/module03/correlations/spearmans_rho.ipynb) | R
 - Kendall's $\tau$ (tau): [Python](/module03/correlations/kendalls_tau.ipynb) | R
-- Point Biserial
+- Point Biserial $r_{pb}$: [Python](/module03/correlations/point_biserial.ipynb) | R
 - Polyserial
 - Polychoric
 - Tetrachoric   
