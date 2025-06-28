@@ -13,7 +13,7 @@ This section reviews the most common correlations you may encounter in the cours
 
 
 &#x1F386; __What is a correlation?__   
-Correlation is a the relationship between variables. We easily see this from breaking the word down:
+Correlation is the relationship between variables. We easily see this from breaking the word down:
 - Prefix: Co-
 - Base word: relation
 
