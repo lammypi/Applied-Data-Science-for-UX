@@ -15,4 +15,5 @@ The list of topics in each section appears below. Please note that this is not a
 | Polyserial | |
 | Polychoric | |
 | Tetrachoric | |
+| $\phi$ Coefficient ||
 | Distance | |
