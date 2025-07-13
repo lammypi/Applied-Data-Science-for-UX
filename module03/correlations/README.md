@@ -9,8 +9,8 @@ This section reviews the most common correlations you may encounter in the cours
 - Rank Biserial: [Python](/module03/correlations/rank_biserial.ipynb) | R
 - Polychoric: [Python](/module03/correlations/polychoric.ipynb) | R
 - Tetrachoric: [Python](/module03/correlations/tetrachoric.ipynb) | R
-- $\phi$ Coefficient: [Python](/module03/correlations/phi.ipynb) | R
-- Distance
+- $\phi$ Correlation: [Python](/module03/correlations/phi.ipynb) | R
+- Distance [Python] | R
 
 
 &#x1F386; __What is a correlation?__   
