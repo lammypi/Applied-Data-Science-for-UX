@@ -7,7 +7,7 @@ This section reviews the most common correlations you may encounter in the cours
 - Point Biserial $r_{pb}$: [Python](/module03/correlations/point_biserial.ipynb) | R
 - Polyserial: [Python](/module03/correlations/polyserial.ipynb) | R
 - Rank Biserial: [Python](/module03/correlations/rank_biserial.ipynb) | R
-- Polychoric
+- Polychoric: [Python](/module03/correlations/polychoric.ipynb) | R
 - Tetrachoric
 - $\phi$ Coefficient
 - Distance
