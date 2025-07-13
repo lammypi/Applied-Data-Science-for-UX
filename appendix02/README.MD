@@ -8,7 +8,7 @@ In general, the steps of bridging include:
 3. Create data structures and pass them back and forth as needed.
 4. Perform analyses not easily performed in Python.
 
-As you can see, it really is __using Python and R seemlessly in the same workflow__.
+As you can see, it really is __using Python and R seamlessly in the same workflow__.
 
 Since my preferred tool for this is rpy2, I want to walk through some of the basics of setting up for bridging with it. If you're working primarily in Python, you may find that you don't have R installed. If that's the case, go here: [R Project for Statistical Computing](https://www.r-project.org/). You'll have to choose a download mirror, but it's very easy to find everything you need on the site.
 
