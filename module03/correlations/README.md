@@ -10,7 +10,7 @@ This section reviews the most common correlations you may encounter in the cours
 - Polychoric: [Python](/module03/correlations/polychoric.ipynb) | R
 - Tetrachoric: [Python](/module03/correlations/tetrachoric.ipynb) | R
 - $\phi$ Correlation: [Python](/module03/correlations/phi.ipynb) | R
-- Distance [Python] | R
+- Distance [Python](/module03/correlations/distance.ipynb) | R
 
 
 &#x1F386; __What is a correlation?__   
