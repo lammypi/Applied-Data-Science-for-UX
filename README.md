@@ -35,11 +35,7 @@ Finding connections within complex data might seem a bit daunting, but with Netw
 
 ### Appendix: Probability Distributions You Should Know
 
-### Appendix: Review of Log and Exponent Rules
-
-### Appendix: Review of Derivatives and Differentiation Rules
-
-### Appendix: Review of Linear Algebra
+### Appendix: Bridging Python to R
 
 
 
