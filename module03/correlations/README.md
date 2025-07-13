@@ -8,7 +8,7 @@ This section reviews the most common correlations you may encounter in the cours
 - Polyserial: [Python](/module03/correlations/polyserial.ipynb) | R
 - Rank Biserial: [Python](/module03/correlations/rank_biserial.ipynb) | R
 - Polychoric: [Python](/module03/correlations/polychoric.ipynb) | R
-- Tetrachoric
+- Tetrachoric: [Python](/module03/correlations/tetrachoric.ipynb) | R
 - $\phi$ Coefficient
 - Distance
 
