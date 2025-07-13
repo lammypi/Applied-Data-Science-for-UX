@@ -10,9 +10,9 @@ The list of topics in each section appears below. Please note that this is not a
 |--------------|-------------|
 | Pearson's r | Linear regression |
 | Spearmans $\rho$ | Logistic regression |
-| Kendall's $\tau$ | Poisson regression |
+| Kendall's $\tau$ | Ordinal regression |
 | Point Biserial | Polynomial regression |
-| Polyserial | |
+| Polyserial | Poisson regression |
 | Polychoric | |
 | Tetrachoric | |
 | $\phi$ Correlation ||
