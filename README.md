@@ -35,7 +35,7 @@ Finding connections within complex data might seem a bit daunting, but with Netw
 
 ### Appendix: Probability Distributions You Should Know
 
-### [Appendix: Bridging Python to R](appendix02/bridging_python_to_r.md)
+### [Appendix: Bridging Python to R](appendix02/readme.md)
 
 
 
