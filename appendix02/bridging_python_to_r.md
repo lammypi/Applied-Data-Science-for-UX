@@ -104,6 +104,6 @@ mean_r_func = ro.r['mean']
 my_mean = mean_r_func(my_floats)
 ```
 
-This covers the basics of bridging Python to R with rpy2. 
+This covers the basics of bridging Python to R with rpy2. If you want to see an introduction with custom Python functions using rpy2, you can read my article on Medium: [A Brief Introduction to rpy2](https://medium.com/womenintechnology/a-brief-introduction-to-rpy2-f1b3be04a0d9)
 
 
