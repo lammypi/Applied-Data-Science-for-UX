@@ -1,0 +1,51 @@
+# Table of contents
+format: jb-book
+root: intro
+
+parts:
+  - caption: Setting up Your Workspace
+    chapters:
+      - file: module00
+        sections:
+          - file: module00/getting_started_with_python.md
+          - file: module00/language_selection.md
+
+  #- caption: Data Preparation
+  #  chapters: []
+
+  #- caption: Basic Statistics
+  #  chapters: []
+
+  - caption: Uncovering Relationships
+    chapters:
+      - file: module03
+        sections:
+          - file: module03/correlations
+          - file: module03/correlations/pearsons_r.ipynb
+          - file: module03/correlations/spearmans_rho.ipynb
+          - file: module03/correlations/kendalls_tau.ipynb
+          - file: module03/correlations/point_biserial.ipynb
+          - file: module03/correlations/polyserial.ipynb
+          - file: module03/correlations/rank_biserial.ipynb
+          - file: module03/correlations/polychoric.ipynb
+          - file: module03/correlations/tetrachoric.ipynb
+          - file: module03/correlations/phi.ipynb
+          - file: module03/correlations/distance.ipynb
+
+  #- caption: Classifying Data Points
+  #  chapters: []
+
+  #- caption: Detecting Groups in the Data
+  #  chapters: []
+
+  #- caption: Analyzing Open Ended Feedback
+  #  chapters:
+  #    - file: module06
+
+  #- caption: Finding Connections
+  #  chapters: []
+
+  - caption: Appendix
+    chapters:
+      - file: appendix00
+      - file: appendix02
