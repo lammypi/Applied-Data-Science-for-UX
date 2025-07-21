@@ -1,0 +1,34 @@
+# Configuration details of Data Science for UX
+title: Applied Data Science for UX
+author: Leslie A. McFarlin
+copyright: "2025"
+description: >
+  A hands-on guide to applying data science techniques in UX research. This book 
+  bridges the gap between qualitative insights and quantitative rigor with code, 
+  real-world examples, and beginner-friendly explanations.
+execute:
+  execute_notebooks: off
+
+###############################################
+# HTML
+html:
+  favicon: _static/favicon.ico
+  logo: _static/dsforux_logo.png
+  theme:
+    name: sphinx_book_theme
+###############################################
+# Repository details
+repository:
+  url: https://github.com/lammypi/Applied-Data-Science-for-UX
+  path_to_book: ""
+  branch: main
+  provider: github
+
+##############################################
+# Add a bibtex file for citations
+bibtex_bibfiles:
+  - references.bib
+
+##############################################
+# Language settings
+language: en
