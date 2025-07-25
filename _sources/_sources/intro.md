@@ -6,7 +6,7 @@ This site offers a hands-on guide to applying data science techniques in UX rese
 
 ## Who Is This for?
 
-This book is for:
+This site is for:
 - UX researchers looking to add some basic data science skills.
 - UX designers curious about analytics.
 - Anyone else interested in exploring the intersection of user experience and data.
