@@ -1,0 +1,585 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Bridging Python to R &#8212; Applied Data Science for UX</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=f0c89327" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=d2032c04" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=f0c89327" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/bootstrap-MSI.css?v=b4a3e8ba" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/bootstrap.css?v=b4a3e8ba" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme-MSI.css?v=435301bd" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme-MSI.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/theme-MSI.css?v=a243ae73" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/theme.css?v=a243ae73" />
+    <link rel="stylesheet" type="text/css" href="../_static/vendor/fontawesome/6.5.2/css/all.min-MSI.css?v=f4fbef65" />
+    <link rel="stylesheet" type="text/css" href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?v=f4fbef65" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'appendix02/bridging_python_to_r';</script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/copybutton_funcs.js?v=776a791e"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/doctools-MSI.js?v=9a2dae69"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/language_data.js?v=d4673a71"></script>
+    <script src="../_static/searchtools-MSI.js?v=63a53a7d"></script>
+    <script src="../_static/searchtools.js?v=63a53a7d"></script>
+    <script src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script src="../_static/sphinx_highlight-MSI.js?v=dc90522c"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/scripts/bootstrap-MSI.js?v=7583a70d"></script>
+    <script src="../_static/scripts/bootstrap.js?v=7583a70d"></script>
+    <script src="../_static/scripts/pydata-sphinx-theme-MSI.js?v=4bc35cb3"></script>
+    <script src="../_static/scripts/pydata-sphinx-theme.js?v=4bc35cb3"></script>
+    <script src="../_static/scripts/sphinx-book-theme-MSI.js?v=887ef09a"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/vendor/fontawesome/6.5.2/js/all.min-MSI.js?v=4e4fcec4"></script>
+    <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?v=4e4fcec4"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Language of Data" href="../appendix00/language_of_data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Applied Data Science for UX</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Applied Data Science for UX
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setting up Your Workspace</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../module00/index.html">Setting up Your Workspace</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../module00/language_selection.html">Setting up Your Workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module00/getting_started_with_python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module00/important_python_packages.html">Important Python Libraries</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uncovering Relationships</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../module03/index.html">Uncovering Relationships</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../module03/correlations/index.html">Uncovering Relationships: Correlations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module03/correlations/pearsons_r.html">Pearson’s r</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module03/correlations/spearmans_rho.html">Spearman’s <span class="math notranslate nohighlight">\(ρ\)</span> (rho)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module03/correlations/kendalls_tau.html">Kendall’s <span class="math notranslate nohighlight">\(τ\)</span> (tau)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module03/correlations/point_biserial.html">Point Biserial Correlation <span class="math notranslate nohighlight">\((r_{pb})\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module03/correlations/polyserial.html">Polyserial Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module03/correlations/rank_biserial.html">Rank Biserial Correlation <span class="math notranslate nohighlight">\(r_{rb}\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module03/correlations/polychoric.html">Polychoric Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module03/correlations/tetrachoric.html">Tetrachoric Correlations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module03/correlations/phi.html"><span class="math notranslate nohighlight">\(\phi\)</span> Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module03/correlations/distance.html">Distance Correlation (dCor)</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendix00/language_of_data.html">Language of Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bridging Python to R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/appendix02/bridging_python_to_r.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bridging Python to R</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bridging-python-to-r">
+<h1>Bridging Python to R<a class="headerlink" href="#bridging-python-to-r" title="Link to this heading">#</a></h1>
+<p>If you’ve been through my section on correlations, you’ve likely come across at least one instance of me bridging from Python to R. This is the act of pulling R into a Python environment and using R objects and R libraries. I commonly use bridging for certain types of correlations (polychoric) and statistical tests (ART ANOVA and its post hoc tests). Now, I don’t expect bridging will be a common activity for most people reading this, but all the same it’s worth understanding how to do it.</p>
+<p>In general, the steps of bridging include:</p>
+<ol class="arabic simple">
+<li><p>Installing (if necessary) a bridging package, like <a class="reference external" href="https://rpy2.github.io/doc/v3.6.x/html/index.html">rpy2</a>, and importing it.</p></li>
+<li><p>Install and then import R packages for use.</p></li>
+<li><p>Create data structures and pass them back and forth as needed.</p></li>
+<li><p>Perform analyses not easily performed in Python.</p></li>
+</ol>
+<p>As you can see, it really is <strong>using Python and R seamlessly in the same workflow</strong>.</p>
+<p>Since my preferred tool for this is rpy2, I want to walk through some of the basics of setting up for bridging with it. If you’re working primarily in Python, you may find that you don’t have R installed. If that’s the case, go here: <a class="reference external" href="https://www.r-project.org/">R Project for Statistical Computing</a>. You’ll have to choose a download mirror, but it’s very easy to find everything you need on the site.</p>
+<p>If you have both Python and R installed, move onto the easiest part of it all: Installation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Installation via pip</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">rpy2</span>
+
+<span class="c1"># Installation via conda</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span><span class="p">::</span><span class="n">rpy2</span>
+</pre></div>
+</div>
+<p>If you run into problems during your installation, confirm the following:</p>
+<ul class="simple">
+<li><p>Your Python version is 3.7 or higher.</p></li>
+<li><p>Your R version is 4.0 or higher.</p></li>
+</ul>
+<p>Next you can import the most basic modules. See the comments embedded within the code snippets for explanations of their purpose.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Supporting Python imports</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+
+<span class="c1"># rpy2 Imports</span>
+<span class="kn">import</span> <span class="nn">rpy2</span> <span class="c1">#Your base import</span>
+<span class="kn">import</span> <span class="nn">rpy2.robjects</span> <span class="k">as</span> <span class="nn">ro</span> <span class="c1">#objects submodule. You need this to declare R objects in your workflow.</span>
+<span class="kn">from</span> <span class="nn">rpy2.robjects.packages</span> <span class="kn">import</span> <span class="n">importr</span><span class="p">,</span> <span class="n">isinstalled</span> <span class="c1">#Helps you manage your R installations</span>
+<span class="kn">from</span> <span class="nn">rpy2.robjects</span> <span class="kn">import</span> <span class="n">pandas2ri</span> <span class="c1">#Facilitates interoperability between R and Python for dataframes.</span>
+<span class="kn">from</span> <span class="nn">rpy2.robjects.conversion</span> <span class="kn">import</span> <span class="n">localconverter</span> <span class="c1">#Assists with converting Python to R.</span>
+</pre></div>
+</div>
+<p>Now that you have all of the basics installed for your bridging work, you can write the code to install all of the R libraries you will need. In the scenario below, imagine that you want to install two libraries: ARTool and emmeans. The comments in the code snippet below will explain what is happening.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import all of the needed R libraries</span>
+<span class="n">utils</span> <span class="o">=</span> <span class="n">importr</span><span class="p">(</span><span class="s1">&#39;utils&#39;</span><span class="p">)</span>
+
+<span class="c1"># Checks to see if ARTool exists in the R environment. If not, it is installed. If it exists, moves on.</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">isinstalled</span><span class="p">(</span><span class="s1">&#39;ARTool&#39;</span><span class="p">):</span>
+  <span class="n">utils</span><span class="o">.</span><span class="n">install_packages</span><span class="p">(</span><span class="s1">&#39;ARTool&#39;</span><span class="p">)</span>
+
+<span class="c1"># Checks to see if emmeans exists in the R environment. If not, it is installed, but will skip it if it exists.</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">isinstalled</span><span class="p">(</span><span class="s1">&#39;emmeans&#39;</span><span class="p">):</span>
+  <span class="n">utils</span><span class="o">.</span><span class="n">install_packages</span><span class="p">(</span><span class="s1">&#39;emmeans&#39;</span><span class="p">)</span>
+
+<span class="c1"># Specifies the name of the ARTool package in the R environment.</span>
+<span class="n">artool</span> <span class="o">=</span> <span class="n">importr</span><span class="p">(</span><span class="s1">&#39;ARTool&#39;</span><span class="p">)</span>
+
+<span class="c1"># Specifies the name of the emmeans package in the R environment.</span>
+<span class="n">emmeans_pkg</span> <span class="o">=</span> <span class="n">importr</span><span class="p">(</span><span class="s1">&#39;emmeans&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>More than likely you’re going to be manipulating datapoints captured in a dataframe. That means that you will want to convert your Python dataframe to an R dataframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to an R dataframe </span>
+<span class="k">with</span> <span class="n">localconverter</span><span class="p">(</span><span class="n">ro</span><span class="o">.</span><span class="n">default_converter</span> <span class="o">+</span> <span class="n">pandas2ri</span><span class="o">.</span><span class="n">converter</span><span class="p">):</span>
+  <span class="n">r_df</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">conversion</span><span class="o">.</span><span class="n">py2rpy</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>I want to take a moment and discuss conversions briefly. Converter objects, like you see above with default_converter, bundle together conversion rules. In rpy2, conversion of pandas objects into R objects can either be done automatically, or they can be controlled within a context. If you want the conversions to proceed automatically, you would use <code class="docutils literal notranslate"><span class="pre">activate</span></code> with something like pandas2ri:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Allows for automatic conversion</span>
+<span class="n">pandas2ri</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
+
+<span class="c1"># Stops the automatic conversion</span>
+<span class="n">pandas2ri</span><span class="o">.</span><span class="n">dectivate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you want more control over the conversions, though, you would create a context. A context is a set of specific rules you can specify for interactions between Python and R, like conversions. I recommend using a context to control your conversions between Python and R to reduce the chance of throwing errors and having to waste time on debugging them. My original example using <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">localconverter(ro.default_converter</span> <span class="pre">+</span> <span class="pre">pandas2ri.converter</span></code> has a context.</p>
+<p>Something else to consider when you’re using R, especially if any columns in your dataframe will act as categories, is that you will need to do one of two things:</p>
+<ol class="arabic simple">
+<li><p>Convert the relevant columns to dtype of category in Python</p></li>
+<li><p>Convert them to factors after converting your Python dataframe to an R dataframe.</p></li>
+</ol>
+<p>I’ll assume that you know how to do the first option, so here is how you would convert a column in an R dataframe to a factor datatype:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert col to factor</span>
+  <span class="n">ro</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">r_df_name</span><span class="si">}</span><span class="s1">$</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1"> &lt;- as.factor(</span><span class="si">{</span><span class="n">r_df_name</span><span class="si">}</span><span class="s1">$</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the above line of code, you may notice ```ro.r()``. This is a bridge to the interpreter. It alerts the interpreter that the string within the parentheses should be interpreted as R code. Using it enables you to define and access R variables, functions, and expressions within your Python environment. Let me show you a more detailed example where you would access a native R function.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a vector of float objects</span>
+<span class="n">my_floats</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="n">FloatVector</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.25</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]))</span>
+
+<span class="c1"># Take the average using R&#39;s mean function - mean(x, trim=0, na.rm=FALSE)</span>
+<span class="n">mean_r_func</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+
+<span class="c1"># Apply mean_r_func</span>
+<span class="n">my_mean</span> <span class="o">=</span> <span class="n">mean_r_func</span><span class="p">(</span><span class="n">my_floats</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This covers the basics of bridging Python to R with rpy2. If you want to see an introduction with custom Python functions using rpy2, you can read my article on Medium: <a class="reference external" href="https://medium.com/womenintechnology/a-brief-introduction-to-rpy2-f1b3be04a0d9">A Brief Introduction to rpy2</a></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./appendix02"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../appendix00/language_of_data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Language of Data</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Leslie A. McFarlin
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

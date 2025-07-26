@@ -1,0 +1,1119 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Polyserial Correlation &#8212; Applied Data Science for UX</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=f0c89327" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=d2032c04" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=f0c89327" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/bootstrap-MSI.css?v=b4a3e8ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/bootstrap.css?v=b4a3e8ba" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme-MSI.css?v=435301bd" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme-MSI.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/theme-MSI.css?v=a243ae73" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/theme.css?v=a243ae73" />
+    <link rel="stylesheet" type="text/css" href="../../_static/vendor/fontawesome/6.5.2/css/all.min-MSI.css?v=f4fbef65" />
+    <link rel="stylesheet" type="text/css" href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?v=f4fbef65" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'module03/correlations/polyserial';</script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/copybutton_funcs.js?v=776a791e"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/doctools-MSI.js?v=9a2dae69"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/language_data.js?v=d4673a71"></script>
+    <script src="../../_static/searchtools-MSI.js?v=63a53a7d"></script>
+    <script src="../../_static/searchtools.js?v=63a53a7d"></script>
+    <script src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script src="../../_static/sphinx_highlight-MSI.js?v=dc90522c"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/scripts/bootstrap-MSI.js?v=7583a70d"></script>
+    <script src="../../_static/scripts/bootstrap.js?v=7583a70d"></script>
+    <script src="../../_static/scripts/pydata-sphinx-theme-MSI.js?v=4bc35cb3"></script>
+    <script src="../../_static/scripts/pydata-sphinx-theme.js?v=4bc35cb3"></script>
+    <script src="../../_static/scripts/sphinx-book-theme-MSI.js?v=887ef09a"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min-MSI.js?v=4e4fcec4"></script>
+    <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?v=4e4fcec4"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Rank Biserial Correlation \(r_{rb}\)" href="rank_biserial.html" />
+    <link rel="prev" title="Point Biserial Correlation \((r_{pb})\)" href="point_biserial.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Applied Data Science for UX</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Applied Data Science for UX
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setting up Your Workspace</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../module00/index.html">Setting up Your Workspace</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../module00/language_selection.html">Setting up Your Workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module00/getting_started_with_python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../module00/important_python_packages.html">Important Python Libraries</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uncovering Relationships</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Uncovering Relationships</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html">Uncovering Relationships: Correlations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pearsons_r.html">Pearson’s r</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spearmans_rho.html">Spearman’s <span class="math notranslate nohighlight">\(ρ\)</span> (rho)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kendalls_tau.html">Kendall’s <span class="math notranslate nohighlight">\(τ\)</span> (tau)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point_biserial.html">Point Biserial Correlation <span class="math notranslate nohighlight">\((r_{pb})\)</span></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Polyserial Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rank_biserial.html">Rank Biserial Correlation <span class="math notranslate nohighlight">\(r_{rb}\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="polychoric.html">Polychoric Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tetrachoric.html">Tetrachoric Correlations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phi.html"><span class="math notranslate nohighlight">\(\phi\)</span> Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distance.html">Distance Correlation (dCor)</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../appendix00/language_of_data.html">Language of Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix02/bridging_python_to_r.html">Bridging Python to R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/module03/correlations/polyserial.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Polyserial Correlation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code-example">Python Code Example</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="polyserial-correlation">
+<h1>Polyserial Correlation<a class="headerlink" href="#polyserial-correlation" title="Link to this heading">#</a></h1>
+<p>The polyserial correlation is really interesting to consider because it forces you, as a researcher, to consider the nature of your variables. This correlation measures the relationship between one continuous variable and one polychotomous variable. Here’s what makes it fun, though: The latent variable underlying the polychotomous variable is not directly observed and assumed to be continuous in nature. Here is an example to make it a bit more concrete:</p>
+<p>You are measuring time on task (continuous) for a newly redesigned appointment booking task. Afterwards, you ask your pariticpants to rate their satisfaction with the task on a scale of 1 to 5 where 1 is very unsatisfied, and 5 is very satisfied. The latent variable underlying the satisfaction rating is assumed to be continuous, but we are using the polychotomous rating scale to represent it and stand in for it in the correlation.</p>
+<p>At this point it’s valid to ask the question: Why would I use polyserial correlation versus something like Spearman correlation? Something like the Spearman correlation is fine if you’re doing exploratory work and you aren’t assuming your polychotomous variable represents a truly continuous latent variable, or you’re not trying to investigate a hypothesis related to your specific variables. However, if in your research you acknowledge one variable is a polychotomized continuous measure, or you form a specific hypothesis like, “I think participants who completed the task quickly will have higher satisfaction,” you should use the polyserial correlation.</p>
+<p>Just to drive home the complexity of this correlation, unlike other correlations, it does not have a closed-form formula. Instead, you are looking to maximize the log likelihood of your data points for each threshold (polychotomous) value.</p>
+<p><strong>Interpreting the Polyserial Correlation</strong></p>
+<p>Like most of the other correlations, the polyserial correlation is on the range of [-1, 1]. The table below provides guidelines for interpretation, but uses the absolute value of the correlation to set the ranges.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Correlation Coefficient</p></th>
+<th class="head"><p>Interpretation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0.00 – 0.10</p></td>
+<td><p>Negligible or trivial</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.10 – 0.30</p></td>
+<td><p>Weak</p></td>
+</tr>
+<tr class="row-even"><td><p>0.30 – 0.50</p></td>
+<td><p>Moderate</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.50 – 1.00</p></td>
+<td><p>Strong</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Assumptions</strong></p>
+<ol class="arabic simple">
+<li><p>The continuous variable should be approximately normal.</p></li>
+<li><p>The continuous latent variable underlying the polychotomized variable is approximately normally distributed.</p></li>
+<li><p>The continuous variable and the continuous latent variable can be modeled using a bivariate normal distribution.</p></li>
+</ol>
+<ul class="simple">
+<li><p>This means that each variable is normally distributed, and their joint distribution (and linear combination of them) is also normally distributed.</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>The thresholds that polychotomize the latent continuous variable are at fixed regular intervals, and ordered.</p></li>
+</ol>
+<section id="python-code-example">
+<h2>Python Code Example<a class="headerlink" href="#python-code-example" title="Link to this heading">#</a></h2>
+<p>Once again, I’ll generate a small data set with some random values for time on task (seconds) and satisfaction (1 to 5)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Correlation coefficient</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="c1"># Visualizations</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seed</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Create the dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time_on_task&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">)),</span>
+                        <span class="s1">&#39;satisfaction&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">100</span><span class="p">))})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 2 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   time_on_task  100 non-null    float64
+ 1   satisfaction  100 non-null    int64  
+dtypes: float64(1), int64(1)
+memory usage: 1.7 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Describe by satisfaction</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;satisfaction&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-64b7a6d2-e13f-409c-b099-6ee58a9ed95a" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="8" halign="left">time_on_task</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>satisfaction</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>20.0</td>
+      <td>60.250345</td>
+      <td>11.950349</td>
+      <td>30.682318</td>
+      <td>54.826496</td>
+      <td>61.415526</td>
+      <td>64.172619</td>
+      <td>89.776269</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>20.0</td>
+      <td>58.502725</td>
+      <td>13.772995</td>
+      <td>30.334076</td>
+      <td>49.322539</td>
+      <td>58.549540</td>
+      <td>66.210826</td>
+      <td>82.268055</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>20.0</td>
+      <td>66.003979</td>
+      <td>16.235523</td>
+      <td>38.721660</td>
+      <td>55.162928</td>
+      <td>63.829606</td>
+      <td>77.605607</td>
+      <td>97.014766</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>18.0</td>
+      <td>58.303124</td>
+      <td>18.169943</td>
+      <td>28.024318</td>
+      <td>50.017554</td>
+      <td>57.917236</td>
+      <td>71.779603</td>
+      <td>95.774510</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>22.0</td>
+      <td>62.478536</td>
+      <td>12.518060</td>
+      <td>32.157218</td>
+      <td>54.023626</td>
+      <td>64.056000</td>
+      <td>69.317282</td>
+      <td>85.089333</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-64b7a6d2-e13f-409c-b099-6ee58a9ed95a')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-64b7a6d2-e13f-409c-b099-6ee58a9ed95a button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-64b7a6d2-e13f-409c-b099-6ee58a9ed95a');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    <div id="df-c385ffe8-4ffa-45a7-bc00-859ec1147713">
+      <button class="colab-df-quickchart" onclick="quickchart('df-c385ffe8-4ffa-45a7-bc00-859ec1147713')"
+                title="Suggest charts"
+                style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+      <script>
+        async function quickchart(key) {
+          const quickchartButtonEl =
+            document.querySelector('#' + key + ' button');
+          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+          quickchartButtonEl.classList.add('colab-df-spinner');
+          try {
+            const charts = await google.colab.kernel.invokeFunction(
+                'suggestCharts', [key], {});
+          } catch (error) {
+            console.error('Error during call to suggestCharts:', error);
+          }
+          quickchartButtonEl.classList.remove('colab-df-spinner');
+          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+        }
+        (() => {
+          let quickchartButtonEl =
+            document.querySelector('#df-c385ffe8-4ffa-45a7-bc00-859ec1147713 button');
+          quickchartButtonEl.style.display =
+            google.colab.kernel.accessAllowed ? 'block' : 'none';
+        })();
+      </script>
+    </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test normality of time on task</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time_on_task&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ShapiroResult(statistic=np.float64(0.9865036939884573), pvalue=np.float64(0.4051241078138243))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Given the p-value is greater than 0.05, we have to accept the null hypothesis that there is no difference between time on task’s distribution and a normal distribution.</p>
+<p>Now we can talk about Satisfaction. One easy indicator is the balance of observiations for each rating. They’re fairly equal in that one category has 22 observations, three have 20 observations, and one has 18 observations. We can also visualize satisfaction versus time on task using a KDE plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># In case lines are not smooth for contouring, add a jitter</span>
+<span class="n">jittered_sat</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;satisfaction&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="c1"># Build a KDE plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time_on_task&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">jittered_sat</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;time_on_task&#39;, ylabel=&#39;satisfaction&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/6da14382484688e5236aec1c1732201989ceacd27d3729bf5525b664d9630d0e.png" src="../../_images/6da14382484688e5236aec1c1732201989ceacd27d3729bf5525b664d9630d0e.png" />
+</div>
+</div>
+<p>This appears to be unimodal and approximately normally distributed, so we can proceed to calculating the polyserial correlation.</p>
+<p>Calculating the polyserial correlation in Python is not easy, though. The best way to do it is actually bridging to R with <a class="reference external" href="https://rpy2.github.io/doc/v3.6.x/html/index.html">rpy2</a> and then using the polycor library’s <code class="docutils literal notranslate"><span class="pre">polyserial</span></code> function. (It can also be done in semopy, but that is for structural equation modeling, which is more complicated than what this tutorial is for.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install rpy2 - If you need to do this, uncomment the line below.</span>
+<span class="c1">#!pip install rpy2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you’re using conda here’s the line for installation you will need:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span><span class="p">::</span><span class="n">rpy2</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Necessary imports</span>
+<span class="kn">import</span> <span class="nn">rpy2</span>
+<span class="kn">import</span> <span class="nn">rpy2.robjects</span> <span class="k">as</span> <span class="nn">ro</span>
+<span class="kn">from</span> <span class="nn">rpy2.robjects.vectors</span> <span class="kn">import</span> <span class="n">IntVector</span>
+<span class="kn">from</span> <span class="nn">rpy2.robjects.packages</span> <span class="kn">import</span> <span class="n">importr</span><span class="p">,</span> <span class="n">isinstalled</span>
+<span class="kn">from</span> <span class="nn">rpy2.robjects</span> <span class="kn">import</span> <span class="n">pandas2ri</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the needed R libraries</span>
+<span class="n">utils</span> <span class="o">=</span> <span class="n">importr</span><span class="p">(</span><span class="s1">&#39;utils&#39;</span><span class="p">)</span>
+
+<span class="c1"># Don&#39;t go through the install process if don&#39;t need to</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">isinstalled</span><span class="p">(</span><span class="s1">&#39;polycor&#39;</span><span class="p">):</span>
+  <span class="n">utils</span><span class="o">.</span><span class="n">install_packages</span><span class="p">(</span><span class="s1">&#39;polycor&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the import</span>
+<span class="n">polycor</span> <span class="o">=</span> <span class="n">importr</span><span class="p">(</span><span class="s1">&#39;polycor&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: Installing package into ‘/usr/local/lib/R/site-library’
+(as ‘lib’ is unspecified)
+
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: also installing the dependencies ‘mvtnorm’, ‘admisc’
+
+
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: trying URL &#39;https://cran.rstudio.com/src/contrib/mvtnorm_1.3-3.tar.gz&#39;
+
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: trying URL &#39;https://cran.rstudio.com/src/contrib/admisc_0.38.tar.gz&#39;
+
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: trying URL &#39;https://cran.rstudio.com/src/contrib/polycor_0.8-1.tar.gz&#39;
+
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: 
+
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: 
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: The downloaded source packages are in
+	‘/tmp/RtmpiiqNV6/downloaded_packages’
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: 
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the pandas dataframe to an R dataframe by creating a context and using a converter</span>
+<span class="k">with</span> <span class="p">(</span><span class="n">ro</span><span class="o">.</span><span class="n">default_converter</span> <span class="o">+</span> <span class="n">pandas2ri</span><span class="o">.</span><span class="n">converter</span><span class="p">)</span><span class="o">.</span><span class="n">context</span><span class="p">():</span>
+  <span class="n">r_df</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">conversion</span><span class="o">.</span><span class="n">get_conversion</span><span class="p">()</span><span class="o">.</span><span class="n">py2rpy</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert satisfaction to an ordered factor</span>
+<span class="n">r_satisfaction</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;ordered&#39;</span><span class="p">](</span><span class="n">r_df</span><span class="o">.</span><span class="n">rx2</span><span class="p">(</span><span class="s1">&#39;satisfaction&#39;</span><span class="p">),</span> <span class="n">levels</span><span class="o">=</span><span class="n">IntVector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+
+<span class="c1"># convert to Float Vector</span>
+<span class="n">r_time_on_task</span> <span class="o">=</span> <span class="n">r_df</span><span class="o">.</span><span class="n">rx2</span><span class="p">(</span><span class="s1">&#39;time_on_task&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the polyserial correlation via polyserial()</span>
+<span class="n">r_corr</span> <span class="o">=</span> <span class="n">polycor</span><span class="o">.</span><span class="n">polyserial</span><span class="p">(</span><span class="n">r_time_on_task</span><span class="p">,</span> <span class="n">r_satisfaction</span><span class="p">)</span>
+
+<span class="c1"># Show</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Polyserial correlation: </span><span class="si">{</span><span class="n">r_corr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Polyserial correlation: 0.049100187842022726
+</pre></div>
+</div>
+</div>
+</div>
+<p>The polyserial correlation (~0.0491) indicates a very weak positive relationship between time_on_task and satisfaction.</p>
+<p>But, is the relationship statistically significant? Let’s find out using <code class="docutils literal notranslate"><span class="pre">hetcor()</span></code> also from polychor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Coerce satisfaction to ordered factor (levels 1-5 assumed)</span>
+<span class="n">r_df</span><span class="p">[</span><span class="n">r_df</span><span class="o">.</span><span class="n">names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;satisfaction&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ro</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;ordered&quot;</span><span class="p">](</span><span class="n">r_df</span><span class="o">.</span><span class="n">rx2</span><span class="p">(</span><span class="s2">&quot;satisfaction&quot;</span><span class="p">),</span> <span class="n">levels</span><span class="o">=</span><span class="n">IntVector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+
+<span class="c1"># Apply hetcor</span>
+<span class="n">r_hetcor</span> <span class="o">=</span> <span class="n">polycor</span><span class="o">.</span><span class="n">hetcor</span><span class="p">(</span><span class="n">r_df</span><span class="p">,</span> <span class="n">use</span><span class="o">=</span><span class="s2">&quot;complete.obs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show results</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r_hetcor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Two-Step Estimates
+
+Correlations/Type of Correlation:
+             time_on_task satisfaction
+time_on_task            1   Polyserial
+satisfaction      0.05048            1
+
+Standard Errors:
+[1] &quot;&quot;       &quot;0.1044&quot;
+
+n = 100 
+
+P-values for Tests of Bivariate Normality:
+[1] &quot;&quot;       &quot;0.5022&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the above output, we can see that the correlation is not statistically significant.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./module03\correlations"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="point_biserial.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Point Biserial Correlation <span class="math notranslate nohighlight">\((r_{pb})\)</span></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="rank_biserial.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Rank Biserial Correlation <span class="math notranslate nohighlight">\(r_{rb}\)</span></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-code-example">Python Code Example</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Leslie A. McFarlin
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
