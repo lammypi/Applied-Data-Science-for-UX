@@ -13,7 +13,7 @@ If you're new to using Python or R on your machine, this section can help you id
 ### Data Preparation 🔢
 Most of the data that's useful for analytics in service of UX comes in varying degrees of messiness. That's OK, though, because you'll learn a bit about how to deal with messy data and draw out useful features for analysis.
 
-### Do Some Basic Stats 🌟
+### [Do Some Basic Stats 🌟](/module02)
 Sometimes all you need is a good ANOVA. Or Mann Whitney U test. This module is a quick review of some basic statistics.
 
 ### [Uncovering Relationships 📉](/module03)
