@@ -14,8 +14,8 @@ For now, let's focus on the distinction of Non-Parametric vs. Parametric statist
    - Variance ($\sigma^{2}$)- how far each value is from the mean.
    - Standard Deviation ($\sigma$)- square root of the variance.
 5. __Measures of shape__- describes the shape of a distribution.
-   - skew- what is the symmetry of a distribution?
-   - kurtosis- where do the bulk of the observations lie within a distribution.
+   - skew ($\hat{\mu}^{3}$)- what is the symmetry of a distribution?
+   - kurtosis ($\kappa$)- where do the bulk of the observations lie within a distribution.
 
 Parameters refer to an entire population of values. This is often impossible for a researcher to get their hands on, so they estimate parameters via _sample statistics_. As part of this, there is a change in notation as follows:
 - Mean, $\mu$ --> Sample Mean, $\bar{X}$
