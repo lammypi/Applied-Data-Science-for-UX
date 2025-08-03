@@ -2,7 +2,7 @@
 
 I want to open this module with a simple statement: Statistics aren't scary.
 
-It's a specific way of thinking meant to help a researcher evaluate their observations. There are two schools of statistical thinking, Bayesian and Frequentist, that I provide some introductory detail on in (Statistical Thinking)[module02/statistical_thinking.ipynb]. I'll sum it up here by saying: UX will use the Frequentist approach almost exclusively.
+It's a specific way of thinking meant to help a researcher evaluate their observations. There are two schools of statistical thinking, Bayesian and Frequentist, that I provide some introductory detail on in [module02/statistical_thinking.ipynb](Statistical Thinking). I'll sum it up here by saying: UX will use the Frequentist approach almost exclusively.
 
 For now, let's focus on the distinction of Non-Parametric vs. Parametric statistics. You'll notice the presence of the word 'parameter' in these labels. So first, what is a _parameter_? A parameter is a metric that describes a feature of a variable's distribution. There are 3 key parameters:
 1. __Measures of central tendency__- describes the typical value of a distribution
